@@ -13,6 +13,12 @@ class String  #:nodoc:
     "%#{self}%"	  
   end
   
+  # Replace non-alphanumbic character
+  #------------------------------------------------------------------------------
+  def replace_non_alphanumeric(replacement = '')
+    self.gsub /[^\w\.\-]/, replacement
+  end
+  
   # Santize the string 
   #------------------------------------------------------------------------------
   def sanitize_filename
