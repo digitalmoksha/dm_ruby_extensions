@@ -7,7 +7,7 @@ Gem::Specification.new do |gem|
   gem.name          = "dm_ruby_extensions"
   gem.version       = DmRubyExtensions::VERSION
   gem.authors       = ["Brett Walker"]
-  gem.email         = ["brett@digitalmoksha.com"]
+  gem.email         = ["github@digitalmoksha.com"]
   gem.description   = %q{Simple Ruby base class extensions}
   gem.summary       = %q{Simple Ruby base class extensions}
   gem.homepage      = ""
@@ -19,7 +19,5 @@ Gem::Specification.new do |gem|
   
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'rspec'
-  
-  #gem.add_runtime_dependency "some-gem"
   
 end
