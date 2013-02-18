@@ -6,6 +6,7 @@ require "dm_ruby_extensions/extend_hash"
 require "dm_ruby_extensions/extend_nil"
 require "dm_ruby_extensions/extend_string"
 require "dm_ruby_extensions/extend_time"
+require "dm_ruby_extensions/extend_fixnum"
 
 module DmRubyExtensions
   # Your code goes here...
