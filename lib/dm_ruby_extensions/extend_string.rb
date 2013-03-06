@@ -19,24 +19,16 @@ class String  #:nodoc:
     self.gsub /[^\w\.\-]/, replacement
   end
   
-  # Santize the string 
+  # Santize the string
+  #   Note: File.basename doesn't work right with Windows paths on Unix
   #------------------------------------------------------------------------------
   def sanitize_filename
     name = self.strip
-    # NOTE: File.basename doesn't work right with Windows paths on Unix
-    # get only the filename, not the whole path
+    #--- get only the filename, not the whole path
     name.gsub! /^.*(\\|\/)/, ''
     
-    # Finally, replace all non alphanumeric, underscore or periods with underscore
+    #--- Finally, replace all non alphanumeric, underscore or periods with underscore
     name.gsub! /[^\w\.\-]/, '_'
-    #returning self.strip do |name|
-      # NOTE: File.basename doesn't work right with Windows paths on Unix
-      # get only the filename, not the whole path
-    #  name.gsub! /^.*(\\|\/)/, ''
-      
-      # Finally, replace all non alphanumeric, underscore or periods with underscore
-    #  name.gsub! /[^\w\.\-]/, '_'
-    #end
     return name
   end
 
