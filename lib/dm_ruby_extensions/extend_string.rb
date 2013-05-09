@@ -70,6 +70,20 @@ class String  #:nodoc:
     replace(smart_capitalize)
   end
 
+  # Truncate the string to a set or words, or sentences.
+  # string.smart_truncate(:sentences => 3)
+  # string.smart_truncate(:words => 12)
+  # From http://stackoverflow.com/questions/1293573/rails-smart-text-truncation
+  #------------------------------------------------------------------------------
+  def smart_truncate(opts = {})
+    opts = {:words => 12}.merge(opts)
+    if opts[:sentences]
+      return self.split(/\.(\s|$)+/).reject{ |s| s.strip.empty? }[0, opts[:sentences]].map{|s| s.strip}.join('. ') + '...'
+    end
+    a = self.split(/\s/) # or /[ ]+/ to only split on spaces
+    n = opts[:words]
+    a[0...n].join(' ') + (a.size > n ? '...' : '')    
+  end
   #------------------------------------------------------------------------------
   
   # http://github.com/tenderlove/namecase
