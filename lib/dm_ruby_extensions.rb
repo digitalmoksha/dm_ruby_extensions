@@ -7,7 +7,7 @@ require "dm_ruby_extensions/extend_nil"
 require "dm_ruby_extensions/extend_string"
 require "dm_ruby_extensions/extend_time"
 require "dm_ruby_extensions/extend_fixnum"
+require "dm_ruby_extensions/extend_numeric"
 
 module DmRubyExtensions
-  # Your code goes here...
 end
