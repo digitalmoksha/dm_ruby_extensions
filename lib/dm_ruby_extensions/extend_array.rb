@@ -14,5 +14,12 @@ class Array
     last.is_a?(::Hash) ? pop : {}
   end
 
+  # Return the value that is closest to the value in the array, rounded down.
+  # [0,5,7,8,11,16].closest_max(6) => 5
+  # [0,5,7,8,11,16].closest_max(7) => 7
+  #------------------------------------------------------------------------------
+  def closest_max(value)
+    self.select{|item| item <= value}.max
+  end
 end
 
