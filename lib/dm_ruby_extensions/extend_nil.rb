@@ -4,6 +4,10 @@ class NilClass #:nodoc:
   def to_s_default(default_str = 'n/a')
     default_str
   end
+
+  def as_boolean
+    false
+  end
   
   def to_age
     0
