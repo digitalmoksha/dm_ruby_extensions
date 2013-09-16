@@ -7,7 +7,20 @@ class String  #:nodoc:
     (empty? || strip.empty?) ? default_str : self.to_s
   end
 
-	# Adds SQL wildcard cahracters to begin/end of string for use in LIKE statements
+  #------------------------------------------------------------------------------
+  def as_boolean
+    (self == 'true' || self == 'yes' || self == '1') ? true : false
+  end
+
+  # given a css type of size (like a width), make it into a valid css value
+  #------------------------------------------------------------------------------
+  def as_css_size
+    size = self
+    size += 'px' unless size.blank? || size.end_with?('px', '%') || size == 'auto' || size == 'inherit'
+    return size
+  end
+
+  # Adds SQL wildcard cahracters to begin/end of string for use in LIKE statements
   #------------------------------------------------------------------------------
   def sql_wildcard
     "%#{self}%"	  
