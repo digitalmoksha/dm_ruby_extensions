@@ -45,6 +45,17 @@ class String  #:nodoc:
     return name
   end
 
+  # if a relative url path is given, then expand it by prepending the supplied 
+  # path.
+  #------------------------------------------------------------------------------
+  def expand_url(path = '')
+    if self.blank? || self.start_with?('http', 'https', '/')
+      return self
+    else
+      return path + self
+    end
+  end
+
   #------------------------------------------------------------------------------
 
   # Ruby version of John Gruber's TitleCase.pl, from http://github.com/samsouder/titlecase
