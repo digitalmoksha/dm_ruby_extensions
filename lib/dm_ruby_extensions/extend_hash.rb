@@ -17,6 +17,11 @@ class Hash
     return Time.local(self[attribute + '(1i)'].to_i, self[attribute + '(2i)'].to_i, self[attribute + '(3i)'].to_i, self[attribute + '(4i)'].to_i, self[attribute + '(5i)'].to_i)   
   end
 
+  # Convert hash of parameters to a query string
+  #------------------------------------------------------------------------------
+  def url_query_string(leading_slash = true)
+    (leading_slash ? "/?" : "?") << URI.escape(self.collect{|k,v| "#{k}=#{v}"}.join('&'))
+  end
 
   # Borrowed from https://github.com/rubyworks/facets
   #------------------------------------------------------------------------------
