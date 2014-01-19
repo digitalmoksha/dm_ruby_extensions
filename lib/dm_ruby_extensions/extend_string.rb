@@ -16,7 +16,7 @@ class String  #:nodoc:
   #------------------------------------------------------------------------------
   def as_css_size
     size = self
-    size += 'px' unless size.blank? || size.end_with?('px', '%') || size == 'auto' || size == 'inherit'
+    size += 'px' unless size.blank? || size.end_with?('px', '%', 'em') || size == 'auto' || size == 'inherit'
     return size
   end
 
