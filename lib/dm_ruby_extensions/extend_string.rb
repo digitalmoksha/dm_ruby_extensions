@@ -49,11 +49,17 @@ class String  #:nodoc:
   # path.
   #------------------------------------------------------------------------------
   def expand_url(path = '')
-    if self.blank? || self.start_with?('http', 'https', '/')
+    if self.blank? || self.absolute_url?
       return self
     else
       return path + self
     end
+  end
+
+  # Test if a url is absolute
+  #------------------------------------------------------------------------------
+  def absolute_url?
+    (self.include?('://') || self.start_with?('/')) ? true : false
   end
 
   #------------------------------------------------------------------------------
