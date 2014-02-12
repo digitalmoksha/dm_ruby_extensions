@@ -21,5 +21,16 @@ class Array
   def closest_max(value)
     self.select{|item| item <= value}.max
   end
+
+  # able to join safe and unsafe strings
+  #------------------------------------------------------------------------------
+  def xss_aware_join(delimiter = '')
+    ''.html_safe.tap do |str|
+      each_with_index do |element, i|
+        str << delimiter if i > 0
+        str << element
+      end
+    end
+  end
 end
 
