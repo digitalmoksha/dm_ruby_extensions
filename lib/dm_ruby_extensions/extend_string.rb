@@ -2,11 +2,12 @@
 #------------------------------------------------------------------------------
 class String  #:nodoc:
 
+  # If the string is empty, return a default value, otherwise the string
   #------------------------------------------------------------------------------
   def to_s_default(default_str = 'n/a')
     (empty? || strip.empty?) ? default_str : self.to_s
   end
-
+  
   #------------------------------------------------------------------------------
   def as_boolean
     (self == 'true' || self == 'yes' || self == '1') ? true : false
