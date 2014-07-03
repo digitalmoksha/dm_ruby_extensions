@@ -10,7 +10,7 @@ class String  #:nodoc:
   
   #------------------------------------------------------------------------------
   def as_boolean
-    (self == 'true' || self == 'yes' || self == '1') ? true : false
+    (self == 'true' || self == 'yes' || self == '1' || self == 1) ? true : false
   end
 
   # given a css type of size (like a width), make it into a valid css value
