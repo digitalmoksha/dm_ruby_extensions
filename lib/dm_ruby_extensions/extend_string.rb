@@ -10,7 +10,7 @@ class String  #:nodoc:
   
   #------------------------------------------------------------------------------
   def as_boolean
-    (self == 'true' || self == 'yes' || self == '1' || self == 1) ? true : false
+    (self == 'true' || self == 'yes' || self == '1') ? true : false
   end
 
   # given a css type of size (like a width), make it into a valid css value
@@ -122,35 +122,51 @@ class String  #:nodoc:
   # converting strings/names to be properly cased. This is good for converting
   # denormalized data to human friendly data.
   #------------------------------------------------------------------------------
-  def name_case
+  def name_case(options = {})
+    options = { :lazy => true, :irish => true }.merge options
+
+    # Skip if string is mixed case
+    if options[:lazy]
+      first_letter_lower = self[0] == self.downcase[0]
+      all_lower_or_upper = (self.downcase == self || self.upcase == self)
+
+      return self unless first_letter_lower || all_lower_or_upper
+    end
+
     localstring = downcase
     localstring.gsub!(/\b\w/) { |first| first.upcase }
-    localstring.gsub!(/\'\w\b/) { |c| c.downcase } # Lowercase 's    
+    localstring.gsub!(/\'\w\b/) { |c| c.downcase } # Lowercase 's
 
-    if localstring =~ /\bMac[A-Za-z]{2,}[^aciozj]\b/ or localstring =~ /\bMc/
-      localstring.gsub!(/\b(Ma?c)([A-Za-z]+)/) { |match| $1 + $2.capitalize }
+    if options[:irish]
+      if localstring =~ /\bMac[A-Za-z]{2,}[^aciozj]\b/ or localstring =~ /\bMc/
+        match = localstring.match(/\b(Ma?c)([A-Za-z]+)/)
+        localstring.gsub!(/\bMa?c[A-Za-z]+/) { match[1] + match[2].capitalize }
 
-      # Now fix "Mac" exceptions
-      localstring.gsub!(/\bMacEvicius/, 'Macevicius')
-      localstring.gsub!(/\bMacHado/, 'Machado')
-      localstring.gsub!(/\bMacHar/, 'Machar')
-      localstring.gsub!(/\bMacHin/, 'Machin')
-      localstring.gsub!(/\bMacHlin/, 'Machlin')
-      localstring.gsub!(/\bMacIas/, 'Macias')
-      localstring.gsub!(/\bMacIulis/, 'Maciulis')
-      localstring.gsub!(/\bMacKie/, 'Mackie')
-      localstring.gsub!(/\bMacKle/, 'Mackle')
-      localstring.gsub!(/\bMacKlin/, 'Macklin')
-      localstring.gsub!(/\bMacQuarie/, 'Macquarie')
+        # Now fix "Mac" exceptions
+        localstring.gsub!(/\bMacEdo/, 'Macedo')
+        localstring.gsub!(/\bMacEvicius/, 'Macevicius')
+        localstring.gsub!(/\bMacHado/, 'Machado')
+        localstring.gsub!(/\bMacHar/, 'Machar')
+        localstring.gsub!(/\bMacHin/, 'Machin')
+        localstring.gsub!(/\bMacHlin/, 'Machlin')
+        localstring.gsub!(/\bMacIas/, 'Macias')
+        localstring.gsub!(/\bMacIulis/, 'Maciulis')
+        localstring.gsub!(/\bMacKie/, 'Mackie')
+        localstring.gsub!(/\bMacKle/, 'Mackle')
+        localstring.gsub!(/\bMacKlin/, 'Macklin')
+        localstring.gsub!(/\bMacKmin/, 'Mackmin')
+        localstring.gsub!(/\bMacQuarie/, 'Macquarie')
+      end
+      localstring.gsub!('Macmurdo','MacMurdo')
     end
-    localstring.gsub!('Macmurdo','MacMurdo')
 
     # Fixes for "son (daughter) of" etc
     localstring.gsub!(/\bAl(?=\s+\w)/, 'al')  # al Arabic or forename Al.
     localstring.gsub!(/\bAp\b/, 'ap')         # ap Welsh.
     localstring.gsub!(/\bBen(?=\s+\w)/,'ben') # ben Hebrew or forename Ben.
     localstring.gsub!(/\bDell([ae])\b/,'dell\1')  # della and delle Italian.
-    localstring.gsub!(/\bD([aeiu])\b/,'d\1')   # da, de, di Italian; du French.
+    localstring.gsub!(/\bD([aeiou])\b/,'d\1')   # da, de, di Italian; du French; do Brasil
+    localstring.gsub!(/\bD([ao]s)\b/,'d\1')   # das, dos Brasileiros
     localstring.gsub!(/\bDe([lr])\b/,'de\1')   # del Italian; der Dutch/Flemish.
     localstring.gsub!(/\bEl\b/,'el')   # el Greek or El Spanish.
     localstring.gsub!(/\bLa\b/,'la')   # la French or La Spanish.

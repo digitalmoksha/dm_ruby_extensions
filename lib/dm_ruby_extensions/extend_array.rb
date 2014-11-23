@@ -34,7 +34,7 @@ class Array
   end
 
   # given an array of css classes/styles, join them into one string.
-  # only join non-nil/non-empty strigns, and return nil if the result
+  # only join non-nil/non-empty strings, and return nil if the result
   # is an empty string (rails tag methods will not include the 
   # attribute if it is nil, which is desirable for cleaner html)
   #------------------------------------------------------------------------------

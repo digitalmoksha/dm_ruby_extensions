@@ -3,9 +3,11 @@ class Hash
   
   # takes a Hash (like the params hash), and converts the Rails date attributes 
   # to a real Date object.
+  # {'start_date(1i)' => 2012, 'start_date(2i)' => 11, 'start_date(3i)' => 23}.convert_date(:start_date)   
   #------------------------------------------------------------------------------
   def convert_date(date_symbol_or_string)
     attribute = date_symbol_or_string.to_s
+    return nil if self[attribute + '(1i)'].nil? || self[attribute + '(2i)'].nil? || self[attribute + '(3i)'].nil? 
     return Date.new(self[attribute + '(1i)'].to_i, self[attribute + '(2i)'].to_i, self[attribute + '(3i)'].to_i)   
   end
 
@@ -14,6 +16,7 @@ class Hash
   #------------------------------------------------------------------------------
   def convert_datetime(date_symbol_or_string)
     attribute = date_symbol_or_string.to_s
+    return nil if self[attribute + '(1i)'].nil? || self[attribute + '(2i)'].nil? || self[attribute + '(3i)'].nil? || self[attribute + '(4i)'].nil? || self[attribute + '(5i)'].nil? 
     return Time.local(self[attribute + '(1i)'].to_i, self[attribute + '(2i)'].to_i, self[attribute + '(3i)'].to_i, self[attribute + '(4i)'].to_i, self[attribute + '(5i)'].to_i)   
   end
 
