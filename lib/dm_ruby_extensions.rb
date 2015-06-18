@@ -9,7 +9,6 @@ require "dm_ruby_extensions/extend_time"
 require "dm_ruby_extensions/extend_fixnum"
 require "dm_ruby_extensions/extend_numeric"
 
-# require 'active_support/all'
 require 'active_support/core_ext/string'
 
 module DmRubyExtensions
