@@ -8,12 +8,12 @@ Gem::Specification.new do |gem|
   gem.version       = DmRubyExtensions::VERSION
   gem.authors       = ["Brett Walker"]
   gem.email         = ["github@digitalmoksha.com"]
-  gem.description   = %q{Simple Ruby base class extensions}
+  gem.description   = %q{Ruby base class extensions}
   gem.summary       = %q{Simple Ruby base class extensions}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/digitalmoksha/dm_ruby_extensions"
+  gem.licenses      = ['MIT']
 
   gem.files         = `git ls-files`.split($/)
-  gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
   
