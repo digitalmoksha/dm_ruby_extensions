@@ -1,3 +1,6 @@
+require 'active_support'
+require 'active_support/core_ext'
+
 require "dm_ruby_extensions/version"
 require "dm_ruby_extensions/extend_array"
 require "dm_ruby_extensions/extend_date"
@@ -8,8 +11,6 @@ require "dm_ruby_extensions/extend_string"
 require "dm_ruby_extensions/extend_time"
 require "dm_ruby_extensions/extend_fixnum"
 require "dm_ruby_extensions/extend_numeric"
-
-require 'active_support/core_ext/string'
 
 module DmRubyExtensions
 end

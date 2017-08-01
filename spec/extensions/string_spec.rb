@@ -44,9 +44,10 @@ describe String do
 
   describe 'expand_url' do
     specify { expect('/home/foobar.doc'.expand_url).to eq '/home/foobar.doc' }
-    specify { expect('foobar.doc'.expand_url).to eq 'foobar.doc' }
-    specify { expect('foobar.doc'.expand_url('/home/')).to eq '/home/foobar.doc' }
     specify { expect('/foobar.doc'.expand_url('/home/')).to eq '/foobar.doc' }
+    specify { expect('foobar.doc'.expand_url).to eq '/foobar.doc' }
+    specify { expect('foobar.doc'.expand_url('/home/')).to eq '/home/foobar.doc' }
+    specify { expect('foobar.doc'.expand_url('/home')).to eq '/home/foobar.doc' }
   end
 
   describe 'absolute_url?' do

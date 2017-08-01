@@ -53,7 +53,7 @@ class String  #:nodoc:
     if self.blank? || self.absolute_url?
       return self
     else
-      return path + self
+      return path.end_with?('/') ? "#{path}#{self}" : "#{path}/#{self}"
     end
   end
 
