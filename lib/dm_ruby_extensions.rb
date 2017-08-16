@@ -11,6 +11,8 @@ require "dm_ruby_extensions/extend_string"
 require "dm_ruby_extensions/extend_time"
 require "dm_ruby_extensions/extend_fixnum"
 require "dm_ruby_extensions/extend_numeric"
+require "dm_ruby_extensions/extend_true"
+require "dm_ruby_extensions/extend_false"
 
 module DmRubyExtensions
 end
