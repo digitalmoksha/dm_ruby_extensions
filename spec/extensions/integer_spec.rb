@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'dm_ruby_extensions'
 
-describe Fixnum do
+describe Integer do
 
   describe 'factorial' do
     #------------------------------------------------------------------------------
