@@ -2,7 +2,6 @@ require 'spec_helper'
 require 'dm_ruby_extensions'
 
 describe Integer do
-
   describe 'factorial' do
     #------------------------------------------------------------------------------
     it 'return the factorial of the number' do
@@ -16,5 +15,4 @@ describe Integer do
     specify { expect(0.as_boolean).to be_falsey }
     specify { expect(20.as_boolean).to be_truthy }
   end
-
 end

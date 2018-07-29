@@ -7,7 +7,7 @@ class String  #:nodoc:
   def to_s_default(default_str = 'n/a')
     (empty? || strip.empty?) ? default_str : self.to_s
   end
-  
+
   #------------------------------------------------------------------------------
   def as_boolean
     (self == 'true' || self == 'yes' || self == '1') ? true : false
@@ -24,15 +24,15 @@ class String  #:nodoc:
   # Adds SQL wildcard cahracters to begin/end of string for use in LIKE statements
   #------------------------------------------------------------------------------
   def sql_wildcard
-    "%#{self}%"	  
+    "%#{self}%"
   end
-  
+
   # Replace non-alphanumbic character
   #------------------------------------------------------------------------------
   def replace_non_alphanumeric(replacement = '')
     self.gsub /[^\w\.\-]/, replacement
   end
-  
+
   # Santize the string
   #   Note: File.basename doesn't work right with Windows paths on Unix
   #------------------------------------------------------------------------------
@@ -40,13 +40,13 @@ class String  #:nodoc:
     name = self.strip
     #--- get only the filename, not the whole path
     name.gsub! /^.*(\\|\/)/, ''
-    
+
     #--- Finally, replace all non alphanumeric, underscore or periods with underscore
     name.gsub! /[^\w\.\-]/, '_'
     return name
   end
 
-  # if a relative url path is given, then expand it by prepending the supplied 
+  # if a relative url path is given, then expand it by prepending the supplied
   # path.
   #------------------------------------------------------------------------------
   def expand_url(path = '')
@@ -70,7 +70,7 @@ class String  #:nodoc:
   #------------------------------------------------------------------------------
   def smart_titlecase
     small_words = %w(a an and as at but by en for if in of on or the to v v. via vs vs. von)
-    
+
     x = split(" ").map do |word|
       # note: word could contain non-word characters!
       # downcase all small_words, capitalize the rest
@@ -83,7 +83,7 @@ class String  #:nodoc:
     # small words after colons are capitalized
     x.join(" ").gsub(/:\s?(\W*#{small_words.join("|")}\W*)\s/) { ": #{$1.smart_capitalize} " }
   end
-  
+
   #------------------------------------------------------------------------------
   def smart_capitalize
     # ignore any leading crazy characters and capitalize the first real character
@@ -95,7 +95,7 @@ class String  #:nodoc:
     end
     self
   end
-  
+
   #------------------------------------------------------------------------------
   def smart_capitalize!
     replace(smart_capitalize)
@@ -113,10 +113,10 @@ class String  #:nodoc:
     end
     a = self.split(/\s/) # or /[ ]+/ to only split on spaces
     n = opts[:words]
-    a[0...n].join(' ') + (a.size > n ? '...' : '')    
+    a[0...n].join(' ') + (a.size > n ? '...' : '')
   end
   #------------------------------------------------------------------------------
-  
+
   # http://github.com/tenderlove/namecase
   # NameCase is a Ruby implementation of Lingua::EN::NameCase, a library for
   # converting strings/names to be properly cased. This is good for converting
@@ -182,12 +182,11 @@ class String  #:nodoc:
 
     localstring
   end
-  
+
   # Modifies _str_ in place and properly namecases the string.
   #------------------------------------------------------------------------------
   def name_case!
     self.gsub!(self, self.name_case)
   end
-  
-end
 
+end
