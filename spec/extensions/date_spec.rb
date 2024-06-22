@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'dm_ruby_extensions'
 
 describe Date do
-
   describe 'to_age' do
     it 'return number of years since now' do
       expect(Date.new(Time.now.year - 50, Time.now.month, Time.now.day).to_age).to eq 50
@@ -23,7 +24,7 @@ describe Date do
   describe 'to_index' do
     it 'creates unique sortable index for a date' do
       date = Date.new(2012, 11, 23)
-      expect(date.to_index).to eq 12328
+      expect(date.to_index).to eq 12_328
     end
   end
 end
