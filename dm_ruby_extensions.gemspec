@@ -1,4 +1,5 @@
-# -*- encoding: utf-8 -*-
+# frozen_string_literal: true
+
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'dm_ruby_extensions/version'
@@ -16,6 +17,8 @@ Gem::Specification.new do |gem|
   gem.files         = `git ls-files`.split($/)
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
-  
-  gem.add_dependency 'activesupport', '>= 4.0'
+
+  gem.required_ruby_version = "~> 3.0"
+
+  gem.add_dependency 'activesupport', '>= 6.0'
 end

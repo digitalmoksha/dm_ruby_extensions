@@ -8,10 +8,10 @@ class DateTime
 
   #------------------------------------------------------------------------------
   def localize(options = {})
-    options = {:format => options} if options.class == String      
-    I18n.localize(self, options)
+    options = {:format => options} if options.class == String
+    I18n.localize(self, **options)
   end
-  
+
   # Create a unique sortable index for this date
   #------------------------------------------------------------------------------
   def to_index

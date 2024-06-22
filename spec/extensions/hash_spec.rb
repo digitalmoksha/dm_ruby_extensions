@@ -25,8 +25,8 @@ describe Hash do
     #------------------------------------------------------------------------------
     it 'converts hash of parameters to a query string' do
       params = {tag: 'shoe', as_admin: '1'}
-      expect(params.url_query_string).to eq '/?tag=shoe&as_admin=1'
-      expect(params.url_query_string(false)).to eq '?tag=shoe&as_admin=1'
+      expect(params.url_query_string).to eq '/?as_admin=1&tag=shoe'
+      expect(params.url_query_string(false)).to eq '?as_admin=1&tag=shoe'
     end
   end
 
@@ -38,13 +38,13 @@ describe Hash do
       expect(foo.rekey(:b=>:x)).to eq({ :a => 1, :x => 2 })
       expect(foo.rekey('foo'=>'bar')).to eq({ :a => 1, :b => 2 })
     end
-    
+
     #------------------------------------------------------------------------------
     it 'converts all keys in the Hash accroding to the given block procedure' do
       foo = { :name=>'Gavin', :wife=>:Lisa }
       expect(foo.rekey{ |k| k.to_s }).to eq({ "name" => "Gavin", "wife" => :Lisa })
     end
-    
+
     #------------------------------------------------------------------------------
     it 'converts all keys to symbols' do
       foo = { 'name' => 'Gavin', 'wife' => :Lisa }
