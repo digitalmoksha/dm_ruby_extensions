@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'bundler/setup'
+require 'dm_ruby_extensions'
+require 'irb'
+
+puts <<~TEXT
+  -------------------
+  Example Usage:
+
+  '1'.as_boolean
+  (Date.today - 12.years).to_age
+  -------------------
+
+TEXT
+
+IRB.start(__FILE__)

@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 #------------------------------------------------------------------------------
 class Array
-
-  # Extract options from a set of arguments. Removes and returns the last element in the array if it's a hash, otherwise returns a blank hash.
+  # Extract options from a set of arguments. Removes and returns the last element
+  # in the array if it's a hash, otherwise returns a blank hash.
   #
   #   def options(*args)
   #     args.extract_options!
@@ -19,7 +21,7 @@ class Array
   # [0,5,7,8,11,16].closest_max(7) => 7
   #------------------------------------------------------------------------------
   def closest_max(value)
-    self.select{|item| item <= value}.max
+    self.select { |item| item <= value }.max
   end
 
   # able to join safe and unsafe strings
@@ -27,7 +29,7 @@ class Array
   def xss_aware_join(delimiter = '')
     ''.html_safe.tap do |str|
       each_with_index do |element, i|
-        str << delimiter if i > 0
+        str << delimiter if i.positive?
         str << element
       end
     end
@@ -38,8 +40,8 @@ class Array
   # is an empty string (rails tag methods will not include the
   # attribute if it is nil, which is desirable for cleaner html)
   #------------------------------------------------------------------------------
-  def css_join(delimiter = '')
-    str = self.flatten.delete_if {|x| x.nil? || x == ''}.join(' ')
+  def css_join(_delimiter = '')
+    str = flatten.delete_if { |x| x.nil? || x == '' }.join(' ')
     str == '' ? nil : str
   end
 end
