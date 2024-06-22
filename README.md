@@ -3,7 +3,9 @@
 [![Gem Version](https://badge.fury.io/rb/dm_ruby_extensions.svg)](http://badge.fury.io/rb/dm_ruby_extensions)
 [![Build Status](https://travis-ci.com/digitalmoksha/dm_ruby_extensions.svg?branch=master)](https://travis-ci.com/digitalmoksha/dm_ruby_extensions)
 
-Adds some simple convienence methods to some Ruby classes, for use in the digitalMoksha gems.  Although some of these can be found in other libraries, this includes a small handful and removes the dependency on another large library.
+Adds some simple convenience methods to some Ruby classes, for use in the digitalMoksha gems.
+Although some of these can be found in other libraries, this includes a small handful and
+removes the dependency on another large library.
 
 ## Installation
 
