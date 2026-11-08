@@ -3,7 +3,7 @@
 require 'spec_helper'
 require 'dm_ruby_extensions'
 
-describe Numeric do
+RSpec.describe Numeric do
   describe 'percent_of' do
     it 'returns percentage of number' do
       expect(25.percent_of(100)).to eq 25

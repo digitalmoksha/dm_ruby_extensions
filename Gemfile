@@ -7,5 +7,5 @@ gemspec
 gem 'pry-byebug'
 gem 'rake'
 gem 'rspec'
-gem 'rubocop', '~> 1.36'
-gem 'rubocop-rspec', '~> 2.13'
+gem 'rubocop', '~> 1.92'
+gem 'rubocop-rspec', '~> 3.10'

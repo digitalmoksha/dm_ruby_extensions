@@ -3,7 +3,7 @@
 require 'spec_helper'
 require 'dm_ruby_extensions'
 
-describe NilClass do
+RSpec.describe NilClass do
   describe 'to_s_default' do
     it 'returns default string' do
       expect(nil.to_s_default).to eq 'n/a'
@@ -12,7 +12,7 @@ describe NilClass do
   end
 
   describe 'as_boolean' do
-    specify { expect(nil.as_boolean).to eq false }
+    specify { expect(nil.as_boolean).to be false }
   end
 
   describe 'to_age' do
@@ -29,6 +29,6 @@ describe NilClass do
 
   describe '+(y)' do
     specify { expect(nil + 12).to eq 12 }
-    specify { expect('foo').to eq 'foo' }
+    specify { expect(nil + 'foo').to eq 'foo' } # rubocop:disable Style/StringConcatenation
   end
 end

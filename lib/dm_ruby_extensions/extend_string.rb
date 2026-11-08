@@ -11,7 +11,7 @@ class String # :nodoc:
 
   #------------------------------------------------------------------------------
   def as_boolean
-    self == 'true' || self == 'yes' || self == '1' ? true : false
+    self == 'true' || self == 'yes' || self == '1'
   end
 
   # given a css type of size (like a width), make it into a valid css value
@@ -59,7 +59,7 @@ class String # :nodoc:
   # Test if a url is absolute
   #------------------------------------------------------------------------------
   def absolute_url?
-    include?('://') || start_with?('/') ? true : false
+    include?('://') || start_with?('/')
   end
 
   #------------------------------------------------------------------------------
@@ -88,13 +88,13 @@ class String # :nodoc:
     result = dup
 
     # ignore any leading crazy characters and capitalize the first real character
-    return result unless self =~ /^['"(\[']*([a-z])/
+    return result unless self =~ /^['"(\[]*([a-z])/
 
     i = index(::Regexp.last_match(1))
     x = result[i, result.length]
 
     # word with capitals and periods mid-word are left alone
-    result[i, 1] = result[i, 1].upcase unless x =~ (/[A-Z]/) || x =~ (/\.\w+/)
+    result[i, 1] = result[i, 1].upcase unless x =~ /[A-Z]/ || x =~ /\.\w+/
 
     result
   end
@@ -143,7 +143,7 @@ class String # :nodoc:
     localstring.gsub!(/'\w\b/, &:downcase) # Lowercase 's
 
     if options[:irish]
-      if localstring =~ (/\bMac[A-Za-z]{2,}[^aciozj]\b/) || localstring =~ (/\bMc/)
+      if localstring =~ /\bMac[A-Za-z]{2,}[^aciozj]\b/ || localstring =~ /\bMc/
         match = localstring.match(/\b(Ma?c)([A-Za-z]+)/)
         localstring.gsub!(/\bMa?c[A-Za-z]+/) { match[1] + match[2].capitalize }
 

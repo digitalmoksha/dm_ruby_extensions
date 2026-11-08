@@ -1,4 +1,10 @@
+plugins:
+  - rubocop-rspec
+
 AllCops:
+  TargetRubyVersion: 3.2
+  NewCops: enable
+  SuggestExtensions: false
   Exclude:
     - '**/tmp/**/*'
   CacheRootDirectory: tmp
@@ -24,3 +30,28 @@ Metrics/PerceivedComplexity:
 
 Style/Documentation:
   Enabled: false
+
+# as_boolean is part of the public API, so it can't take a trailing ?
+Naming/PredicateMethod:
+  AllowedMethods:
+    - as_boolean
+
+# Spec files are named after the extension file (datetime_spec.rb, nil_spec.rb),
+# not the class (date_time_spec.rb, nil_class_spec.rb)
+RSpec/SpecFilePathFormat:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+# expect(str.absolute_url?).to be(true), rather than expect(str).to be_absolute_url,
+# which RSpec/ExpectActual rejects for a literal receiver
+RSpec/PredicateMatcher:
+  EnforcedStyle: explicit
+
+# Matches the explicit PredicateMatcher style: expect(x).to be(nil)
+RSpec/BeNil:
+  EnforcedStyle: be

@@ -3,7 +3,7 @@
 require 'spec_helper'
 require 'dm_ruby_extensions'
 
-describe Integer do
+RSpec.describe Integer do
   describe 'factorial' do
     #------------------------------------------------------------------------------
     it 'return the factorial of the number' do

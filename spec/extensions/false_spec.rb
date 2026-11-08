@@ -3,8 +3,8 @@
 require 'spec_helper'
 require 'dm_ruby_extensions'
 
-describe FalseClass do
+RSpec.describe FalseClass do
   describe 'as_boolean' do
-    specify { expect(false.as_boolean).to eq false }
+    specify { expect(false.as_boolean).to be false }
   end
 end

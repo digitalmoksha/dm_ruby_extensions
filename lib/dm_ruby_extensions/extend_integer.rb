@@ -12,6 +12,6 @@ class Integer
 
   #------------------------------------------------------------------------------
   def as_boolean
-    positive? ? true : false
+    positive?
   end
 end

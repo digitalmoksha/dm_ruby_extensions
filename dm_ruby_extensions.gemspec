@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-lib = File.expand_path('lib', __dir__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'dm_ruby_extensions/version'
+require_relative 'lib/dm_ruby_extensions/version'
 
 Gem::Specification.new do |gem|
   gem.name          = 'dm_ruby_extensions'
@@ -14,11 +12,17 @@ Gem::Specification.new do |gem|
   gem.homepage      = 'https://github.com/digitalmoksha/dm_ruby_extensions'
   gem.licenses      = ['MIT']
 
-  gem.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
-  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
+  gem.metadata = {
+    'source_code_uri' => gem.homepage,
+    'changelog_uri' => "#{gem.homepage}/blob/master/CHANGELOG.md",
+    'bug_tracker_uri' => "#{gem.homepage}/issues",
+    'rubygems_mfa_required' => 'true'
+  }
+
+  gem.files         = Dir['lib/**/*.rb', 'README.md', 'CHANGELOG.md', 'LICENSE']
   gem.require_paths = ['lib']
 
-  gem.required_ruby_version = '~> 3.0'
+  gem.required_ruby_version = '>= 3.2'
 
-  gem.add_dependency 'activesupport', '>= 6.0'
+  gem.add_dependency 'activesupport', '>= 6.0', '< 9'
 end
