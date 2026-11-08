@@ -3,13 +3,13 @@
 require 'spec_helper'
 require 'dm_ruby_extensions'
 
-describe Hash do
+RSpec.describe Hash do
   describe 'convert_date' do
     #------------------------------------------------------------------------------
     it 'converts a rails date hash' do
       datehash = { 'start_date(1i)' => 2012, 'start_date(2i)' => 11, 'start_date(3i)' => 23 }
       expect(datehash.convert_date(:start_date)).to eq Date.new(2012, 11, 23)
-      expect(datehash.convert_date(:end_date)).to eq nil
+      expect(datehash.convert_date(:end_date)).to be(nil)
     end
   end
 
@@ -19,7 +19,7 @@ describe Hash do
       datehash = { 'start_date(1i)' => 2012, 'start_date(2i)' => 11, 'start_date(3i)' => 23, 'start_date(4i)' => 8,
                    'start_date(5i)' => 35 }
       expect(datehash.convert_datetime(:start_date)).to eq Time.local(2012, 11, 23, 8, 35)
-      expect(datehash.convert_datetime(:end_date)).to eq nil
+      expect(datehash.convert_datetime(:end_date)).to be(nil)
     end
   end
 
@@ -42,12 +42,10 @@ describe Hash do
     end
 
     #------------------------------------------------------------------------------
-    # rubocop:disable Style/SymbolProc
-    it 'converts all keys in the Hash accroding to the given block procedure' do
+    it 'converts all keys in the Hash according to the given block procedure' do
       foo = { name: 'Gavin', wife: :Lisa }
-      expect(foo.rekey { |k| k.to_s }).to eq({ 'name' => 'Gavin', 'wife' => :Lisa })
+      expect(foo.rekey { |k| k.to_s }).to eq({ 'name' => 'Gavin', 'wife' => :Lisa }) # rubocop:disable Style/SymbolProc
     end
-    # rubocop:enable Style/SymbolProc
 
     #------------------------------------------------------------------------------
     it 'converts all keys to symbols' do

@@ -3,8 +3,8 @@
 require 'spec_helper'
 require 'dm_ruby_extensions'
 
-describe TrueClass do
+RSpec.describe TrueClass do
   describe 'as_boolean' do
-    specify { expect(true.as_boolean).to eq true }
+    specify { expect(true.as_boolean).to be true }
   end
 end

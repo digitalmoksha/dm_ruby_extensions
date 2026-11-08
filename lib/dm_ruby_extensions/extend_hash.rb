@@ -30,11 +30,9 @@ class Hash
 
   # Convert hash of parameters to a query string
   #------------------------------------------------------------------------------
-  # rubocop:disable Style/OptionalBooleanParameter
-  def url_query_string(leading_slash = true)
+  def url_query_string(leading_slash = true) # rubocop:disable Style/OptionalBooleanParameter
     "#{leading_slash ? '/?' : '?'}#{to_query}"
   end
-  # rubocop:enable Style/OptionalBooleanParameter
 
   # Borrowed from https://github.com/rubyworks/facets
   #------------------------------------------------------------------------------
@@ -111,7 +109,7 @@ class Hash
   #
   # CREDIT: Trans, Gavin Kistner
 
-  def rekey!(key_map = nil, &block)
-    replace(rekey(key_map, &block))
+  def rekey!(key_map = nil, &)
+    replace(rekey(key_map, &))
   end
 end

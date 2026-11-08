@@ -16,6 +16,6 @@ class DateTime
   # Create a unique sortable index for this date
   #------------------------------------------------------------------------------
   def to_index
-    yday + (year - 2000) * 1000
+    yday + ((year - 2000) * 1000)
   end
 end

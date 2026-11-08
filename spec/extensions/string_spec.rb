@@ -3,7 +3,7 @@
 require 'spec_helper'
 require 'dm_ruby_extensions'
 
-describe String do
+RSpec.describe String do
   describe 'to_s_default' do
     specify { expect('foobar'.to_s_default).to eq 'foobar' }
     specify { expect(''.to_s_default).to eq 'n/a' }
@@ -52,9 +52,9 @@ describe String do
   end
 
   describe 'absolute_url?' do
-    specify { expect('/home/foo'.absolute_url?).to be_truthy }
-    specify { expect('://home/foo'.absolute_url?).to be_truthy }
-    specify { expect('home/foo'.absolute_url?).to be_falsey }
+    specify { expect('/home/foo'.absolute_url?).to be(true) }
+    specify { expect('://home/foo'.absolute_url?).to be(true) }
+    specify { expect('home/foo'.absolute_url?).to be(false) }
   end
 
   describe 'smart_titlecase' do
@@ -74,10 +74,12 @@ describe String do
       expect('One time. Two times. 3 times. 4 times.'.smart_truncate(sentences: 3))
         .to eq 'One time. Two times. 3 times...'
     end
+
     specify do
       expect('one two three and four five six and seven and yet another eight'.smart_truncate(words: 6))
         .to eq 'one two three and four five...'
     end
+
     specify do
       expect('one two three and four five six and seven and yet another eight'.smart_truncate)
         .to eq 'one two three and four five six and seven and yet another...'
@@ -85,8 +87,8 @@ describe String do
   end
 
   describe 'name_case' do
-    before :each do
-      @proper_names = [
+    let(:proper_names) do
+      [
         'Keith',            'Leigh-Williams',       'McCarthy',
         "O'Callaghan",      'St. John',             'von Streit',
         'van Dyke',         'Van',                  'ap Llwyd Dafydd',
@@ -110,7 +112,7 @@ describe String do
     end
 
     it 'handles each proper name' do
-      @proper_names.each do |name|
+      proper_names.each do |name|
         expect(name.downcase.name_case).to eq name
         expect(name.name_case).to eq name
         # assert_equal(name, NameCase(name))

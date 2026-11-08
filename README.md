@@ -10,7 +10,7 @@ titles, building CSS and URLs, reading Rails date params, and similar everyday j
 
 ## Requirements
 
-- Ruby 3.0 or later (CI covers 3.0 through 4.0)
+- Ruby 3.2 or later (CI covers 3.2 through 4.0)
 - ActiveSupport 6.0 or later
 
 Requiring the gem also loads `active_support/core_ext`. The `localize` methods use
@@ -124,10 +124,11 @@ bundle exec rspec
 bundle exec rubocop
 ```
 
-CI runs the specs on Ruby 3.0 through 4.0 (plus ruby-head) on Linux and macOS, and
+CI runs the specs on Ruby 3.2 through 4.0 (plus ruby-head) on Linux and macOS, and
 runs RuboCop, for every pull request and push to `master`.
 
-To release a new version, update `lib/dm_ruby_extensions/version.rb`, then:
+To release a new version, update `lib/dm_ruby_extensions/version.rb` and
+`CHANGELOG.md`, then:
 
 ```
 gem build dm_ruby_extensions.gemspec

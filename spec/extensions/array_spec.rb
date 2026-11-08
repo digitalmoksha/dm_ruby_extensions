@@ -3,7 +3,7 @@
 require 'spec_helper'
 require 'dm_ruby_extensions'
 
-describe Array do
+RSpec.describe Array do
   describe 'closest_max' do
     #------------------------------------------------------------------------------
     it 'return the value that is closest to the value in the array, rounded down' do
